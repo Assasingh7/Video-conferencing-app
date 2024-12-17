@@ -3,19 +3,22 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Inter } from '@next/font/google';
-import { ClerkProvider,  } from '@clerk/nextjs'
+import { ClerkProvider } from '@clerk/nextjs';
 import { Toaster } from "@/components/ui/toaster";
-// import '@stream-io/video-react-sdk/dist/css/style.css'
 import "@stream-io/video-react-sdk/dist/css/styles.css";
+
+// Google Font - Inter
 const inter = Inter({
-    subsets: ['latin'],
+  subsets: ['latin'],
 });
 
+// Local Fonts - GeistSans and GeistMono
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -29,17 +32,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <ClerkProvider><body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased bg-dark-2`}
-      >
-        {children}
-        <Toaster/>
-      </body></ClerkProvider>
+      <ClerkProvider>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased bg-dark-2`}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </ClerkProvider>
     </html>
   );
 }
+
